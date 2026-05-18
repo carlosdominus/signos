@@ -40,14 +40,13 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#07132a] text-white font-sans relative overflow-x-hidden selection:bg-yellow-400 selection:text-blue-900">
-      {/* Background Image with more control */}
+      {/* Background Image - Essential for the look */}
       <div 
-        className="fixed inset-0 opacity-30 mix-blend-overlay pointer-events-none"
+        className="fixed inset-0 pointer-events-none"
         style={{ 
           backgroundImage: `url(${IMAGE_ROOT}fundo.png)`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          filter: 'blur(100px)'
         }}
       />
 
