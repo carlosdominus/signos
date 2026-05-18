@@ -246,7 +246,7 @@ function Step2({ sign, onSelect, onBack }: { sign: ZodiacSign, onSelect: (day: n
         Qual é o seu Dia de Nascimento?
       </h3>
       
-      <div className="w-full flex flex-col items-center overflow-y-auto max-h-[55vh] pr-2 custom-scrollbar">
+      <div className="w-full flex flex-col items-center">
         {renderMonth(sign.startMonth, sign.startDay, getMaxDays(sign.startMonth))}
         {renderMonth(sign.endMonth, 1, sign.endDay)}
       </div>
