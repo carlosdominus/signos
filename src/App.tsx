@@ -169,14 +169,26 @@ export default function App() {
 
 // --- Step Components ---
 
+function ImagePreloader() {
+  return (
+    <div className="fixed opacity-0 pointer-events-none -z-50 overflow-hidden w-0 h-0">
+      {ZODIAC_SIGNS.map(sign => (
+        <img key={sign.id} src={sign.image} alt="" loading="eager" />
+      ))}
+      <img src={`${IMAGE_ROOT}fundo.png`} alt="" loading="eager" />
+    </div>
+  );
+}
+
 function Step1({ onSelect }: { onSelect: (sign: ZodiacSign) => void }) {
   return (
-    <div className="flex flex-col items-center">
-      <h3 className="text-[28px] font-extrabold mb-10 uppercase tracking-tight text-center bg-gradient-to-b from-white to-blue-200 bg-clip-text text-transparent">
+    <div className="flex flex-col items-center text-center">
+      <ImagePreloader />
+      <h3 className="text-[28px] font-extrabold mb-10 uppercase tracking-tight bg-gradient-to-b from-white to-blue-200 bg-clip-text text-transparent">
         Clique no SEU SIGNO
       </h3>
       <div className="grid grid-cols-3 gap-4 w-full">
-        {ZODIAC_SIGNS.map((sign) => (
+        {ZODIAC_SIGNS.map((sign, index) => (
           <button
             id={`sign-${sign.id}`}
             key={sign.id}
@@ -189,6 +201,7 @@ function Step1({ onSelect }: { onSelect: (sign: ZodiacSign) => void }) {
               alt={sign.name} 
               className="w-14 h-14 object-contain mb-3 group-hover:brightness-110 group-hover:scale-110 transition-transform duration-500" 
               referrerPolicy="no-referrer"
+              fetchPriority={index < 6 ? "high" : "auto"}
             />
             <span className="text-blue-900 font-extrabold text-[10px] uppercase text-center tracking-wider">{sign.name}</span>
           </button>
