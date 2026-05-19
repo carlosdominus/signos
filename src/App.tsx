@@ -75,34 +75,34 @@ export default function App() {
         }}
       />
 
-      <div className="relative z-10 max-w-lg mx-auto px-6 py-10 flex flex-col min-h-screen">
+      <div className={`relative z-10 ${state.currentStep >= 9 && state.currentStep !== 13 ? 'max-w-4xl' : 'max-w-lg'} mx-auto px-5 py-4 flex flex-col min-h-screen transition-all duration-700`}>
         {state.currentStep <= 8 && (
           <>
-            {/* Header Alert - More Premium Appearance */}
-            <div className="bg-red-600/90 backdrop-blur-md rounded-2xl py-3 px-8 flex items-center justify-center gap-3 mb-10 shadow-[0_0_25px_rgba(220,38,38,0.4)] border border-red-500/50 animate-pulse">
-              <AlertTriangle className="w-5 h-5 text-white/90" strokeWidth={2.5} />
-              <span className="text-white font-extrabold uppercase tracking-[0.15em] text-xs md:text-sm">Alerta Vibracional</span>
-              <AlertTriangle className="w-5 h-5 text-white/90" strokeWidth={2.5} />
+            {/* Header Alert - More Compact */}
+            <div className="bg-red-600/90 backdrop-blur-md rounded-xl py-2 px-6 flex items-center justify-center gap-2 mb-4 shadow-[0_0_15px_rgba(220,38,38,0.3)] border border-red-500/50 animate-pulse">
+              <AlertTriangle className="w-4 h-4 text-white/90" strokeWidth={2.5} />
+              <span className="text-white font-black uppercase tracking-wider text-[10px] md:text-xs">Alerta Vibracional</span>
+              <AlertTriangle className="w-4 h-4 text-white/90" strokeWidth={2.5} />
             </div>
 
-            {/* Title Section - Matching Reference Sizes */}
-            <div className="text-center mb-10">
-              <h1 className="text-[28px] md:text-[32px] font-extrabold mb-6 leading-[1.1] text-blue-100 tracking-tight drop-shadow-lg">
+            {/* Title Section - More Compact Fonts */}
+            <div className="text-center mb-4">
+              <h1 className="text-[22px] md:text-[26px] font-extrabold mb-2 leading-tight text-blue-100 tracking-tight drop-shadow-lg">
                 Seu Anjo está tentando falar, mas seu rádio está desligado?
               </h1>
-              <p className="text-base md:text-lg text-blue-200/80 font-medium max-w-[90%] mx-auto leading-relaxed">
+              <p className="text-sm md:text-base text-blue-200/80 font-medium max-w-[90%] mx-auto leading-tight">
                 Este teste de 30 segundos te revela seu Anjo da Guarda e te sintoniza com ele
               </p>
             </div>
 
-            {/* Progress Bar - Thinner and more Elegant */}
-            <div className="mb-12">
-              <div className="flex justify-center mb-3">
-                <span className="text-[10px] text-blue-300 font-bold tracking-[0.2em] uppercase opacity-70">
+            {/* Progress Bar - More Compact */}
+            <div className="mb-6">
+              <div className="flex justify-center mb-1">
+                <span className="text-[9px] text-blue-300 font-bold tracking-widest uppercase opacity-70">
                   Passo {state.currentStep} de 8
                 </span>
               </div>
-              <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden border border-white/5">
+              <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden border border-white/5">
                 <motion.div 
                   className="h-full bg-gradient-to-r from-yellow-500 via-yellow-200 to-white"
                   initial={{ width: 0 }}
@@ -195,31 +195,35 @@ export default function App() {
                 />
               )}
               {state.currentStep === 13 && (
-                <div className="flex flex-col items-center justify-center text-center py-20 bg-blue-500/10 backdrop-blur-xl rounded-[40px] border border-white/10">
-                   <h2 className="text-3xl font-extrabold mb-6 text-yellow-400">Leitura Concluída!</h2>
-                   <p className="text-xl mb-8">Enviamos seu mapa vibracional completo para<br/><span className="text-blue-300">{state.email}</span></p>
-                   <div className="bg-white/10 p-6 rounded-2xl border border-white/5">
-                      <p className="text-sm opacity-70">Verifique sua caixa de entrada e spam.</p>
-                   </div>
+                <div className="flex-grow flex items-center justify-center p-4">
+                  <button 
+                    onClick={() => setState(prev => ({ ...prev, currentStep: 14 }))}
+                    className="bg-[#2ebc15] hover:bg-green-500 text-white font-black py-4 px-8 md:py-6 md:px-12 rounded-3xl shadow-[0_0_40px_rgba(46,188,21,0.5)] border-2 border-white/20 transition-all active:scale-95 text-xl md:text-3xl uppercase tracking-tighter text-center max-w-full leading-tight"
+                  >
+                    QUERO DESCOBRIR<br/>MINHAS DATAS
+                  </button>
                 </div>
+              )}
+              {state.currentStep === 14 && (
+                <VSLStep />
               )}
             </motion.div>
           </AnimatePresence>
         </div>
 
         {state.currentStep <= 8 && (
-          /* Footer Privacy - Refined */
-          <div className="mt-12 pt-6 border-t border-white/5">
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <div className="bg-yellow-500/10 p-2.5 rounded-xl border border-yellow-500/20">
-                  <Lock className="w-5 h-5 text-yellow-500" />
+          /* Footer Privacy - More Compact */
+          <div className="mt-6 pt-4 border-t border-white/5">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <div className="bg-yellow-500/10 p-2 rounded-lg border border-yellow-500/20">
+                  <Lock className="w-4 h-4 text-yellow-500" />
               </div>
-              <div className="text-xs text-left max-w-[200px]">
-                  <p className="font-extrabold text-yellow-500 uppercase tracking-wider mb-1">Privacidade Garantida:</p>
+              <div className="text-[10px] text-left max-w-[200px]">
+                  <p className="font-extrabold text-yellow-500 uppercase tracking-wider">Privacidade Garantida:</p>
                   <p className="text-blue-100/60 font-medium leading-tight">Suas respostas são 100% anônimas e confidenciais.</p>
               </div>
             </div>
-            <p className="text-center text-[10px] text-blue-200/30 max-w-[280px] mx-auto uppercase tracking-[0.1em] font-semibold">
+            <p className="text-center text-[9px] text-blue-200/20 max-w-[280px] mx-auto uppercase tracking-widest font-semibold">
               Mais de 50.638 pessoas já descobriram qual é o seu anjo através deste teste.
             </p>
           </div>
@@ -250,26 +254,26 @@ function Step1({ onSelect }: { onSelect: (sign: ZodiacSign) => void }) {
   return (
     <div className="flex flex-col items-center text-center">
       <ImagePreloader />
-      <h3 className="text-[28px] font-extrabold mb-10 uppercase tracking-tight bg-gradient-to-b from-white to-blue-200 bg-clip-text text-transparent">
+      <h3 className="text-[22px] font-black mb-6 uppercase tracking-tight bg-gradient-to-b from-white to-blue-200 bg-clip-text text-transparent italic">
         Clique no SEU SIGNO
       </h3>
-      <div className="grid grid-cols-3 gap-4 w-full">
+      <div className="grid grid-cols-3 gap-3 w-full">
         {ZODIAC_SIGNS.map((sign, index) => (
           <button
             id={`sign-${sign.id}`}
             key={sign.id}
             onClick={() => onSelect(sign)}
-            className="group relative flex flex-col items-center justify-center bg-white rounded-2xl p-4 shadow-[0_8px_20px_rgba(0,0,0,0.2)] hover:ring-2 hover:ring-yellow-400 transition-all hover:scale-[1.05] active:scale-95 duration-300"
+            className="group relative flex flex-col items-center justify-center bg-white rounded-xl p-2 md:p-3 shadow-[0_6px_15px_rgba(0,0,0,0.15)] hover:ring-2 hover:ring-yellow-400 transition-all hover:scale-[1.03] active:scale-95 duration-300"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white rounded-2xl -z-10 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white rounded-xl -z-10 opacity-0 group-hover:opacity-100 transition-opacity" />
             <img 
               src={sign.image} 
               alt={sign.name} 
-              className="w-14 h-14 object-contain mb-3 group-hover:brightness-110 group-hover:scale-110 transition-transform duration-500" 
+              className="w-10 h-10 md:w-12 md:h-12 object-contain mb-1.5 group-hover:brightness-110 group-hover:scale-110 transition-transform duration-500" 
               referrerPolicy="no-referrer"
               fetchPriority={index < 6 ? "high" : "auto"}
             />
-            <span className="text-blue-900 font-extrabold text-[10px] uppercase text-center tracking-wider">{sign.name}</span>
+            <span className="text-blue-900 font-extrabold text-[9px] md:text-[10px] uppercase text-center tracking-tight leading-tight">{sign.name}</span>
           </button>
         ))}
       </div>
@@ -285,17 +289,17 @@ function Step2({ sign, onSelect, onBack }: { sign: ZodiacSign, onSelect: (day: n
     }
 
     return (
-      <div key={monthIndex} className="mb-10 w-full">
-        <div className="bg-blue-500/30 backdrop-blur-sm border border-blue-400/20 py-2 rounded-xl mb-4">
-          <h4 className="text-center font-extrabold text-xl tracking-tight">{MONTH_NAMES[monthIndex]}</h4>
+      <div key={monthIndex} className="mb-6 w-full">
+        <div className="bg-blue-500/30 backdrop-blur-sm border border-blue-400/20 py-1.5 rounded-xl mb-3">
+          <h4 className="text-center font-extrabold text-lg tracking-tight">{MONTH_NAMES[monthIndex]}</h4>
         </div>
-        <div className="grid grid-cols-5 gap-2.5">
+        <div className="grid grid-cols-5 gap-2">
           {days.map(day => (
             <button
                id={`day-${monthIndex}-${day}`}
                key={day}
                onClick={() => onSelect(day, monthIndex)}
-               className="bg-white text-blue-900 font-extrabold py-4 rounded-xl shadow-md hover:bg-blue-50 transition-all active:scale-90"
+               className="bg-white text-blue-900 font-extrabold py-3 rounded-xl shadow-md hover:bg-blue-50 transition-all active:scale-90 text-sm md:text-base"
             >
               {day}
             </button>
@@ -326,16 +330,16 @@ function Step2({ sign, onSelect, onBack }: { sign: ZodiacSign, onSelect: (day: n
 function Step3({ onSelect, onBack }: { onSelect: (decade: number) => void, onBack: () => void }) {
   return (
     <div className="flex flex-col items-center">
-      <div className="bg-blue-400/30 backdrop-blur-sm border border-blue-300/20 py-5 px-8 rounded-3xl mb-10 w-full">
-        <h3 className="text-xl font-extrabold uppercase tracking-tight text-center">EM QUE DÉCADA VOCÊ NASCEU?</h3>
+      <div className="bg-blue-400/30 backdrop-blur-sm border border-blue-300/20 py-3 px-6 rounded-2xl mb-6 w-full">
+        <h3 className="text-lg font-extrabold uppercase tracking-tight text-center italic">EM QUE DÉCADA VOCÊ NASCEU?</h3>
       </div>
-      <div className="grid grid-cols-2 gap-4 w-full">
+      <div className="grid grid-cols-2 gap-3 w-full">
         {DECADES.map(decade => (
           <button
             id={`decade-${decade}`}
             key={decade}
             onClick={() => onSelect(decade)}
-            className="bg-white text-blue-900 font-extrabold py-5 rounded-2xl shadow-xl hover:ring-2 hover:ring-yellow-400/50 transition-all hover:scale-[1.02] active:scale-95 duration-300"
+            className="bg-white text-blue-900 font-extrabold py-4 rounded-xl shadow-lg hover:ring-2 hover:ring-yellow-400/50 transition-all hover:scale-[1.02] active:scale-95 duration-300"
           >
             {decade}
           </button>
@@ -350,16 +354,16 @@ function Step4({ decade, onSelect, onBack }: { decade: number, onSelect: (year: 
   const years = Array.from({ length: 10 }, (_, i) => decade + i);
   return (
     <div className="flex flex-col items-center">
-      <div className="bg-blue-400/30 backdrop-blur-sm border border-blue-300/20 py-5 px-8 rounded-3xl mb-10 w-full">
-        <h3 className="text-xl font-extrabold uppercase tracking-tight text-center">EM QUE ANO VOCÊ NASCEU?</h3>
+      <div className="bg-blue-400/30 backdrop-blur-sm border border-blue-300/20 py-3 px-6 rounded-2xl mb-6 w-full">
+        <h3 className="text-lg font-extrabold uppercase tracking-tight text-center italic">EM QUE ANO VOCÊ NASCEU?</h3>
       </div>
-      <div className="grid grid-cols-3 gap-3 w-full">
+      <div className="grid grid-cols-3 gap-2 w-full">
         {years.map(year => (
           <button
             id={`year-${year}`}
             key={year}
             onClick={() => onSelect(year)}
-            className="bg-white text-blue-900 font-extrabold py-5 rounded-2xl shadow-xl hover:ring-2 hover:ring-yellow-400/50 transition-all hover:scale-[1.02] active:scale-95 duration-300"
+            className="bg-white text-blue-900 font-extrabold py-4 rounded-xl shadow-lg hover:ring-2 hover:ring-yellow-400/50 transition-all hover:scale-[1.02] active:scale-95 duration-300"
           >
             {year}
           </button>
@@ -373,21 +377,21 @@ function Step4({ decade, onSelect, onBack }: { decade: number, onSelect: (year: 
 function Step5({ onSelect, onBack }: { onSelect: (status: MaritalStatus) => void, onBack: () => void }) {
   return (
     <div className="flex flex-col items-center">
-      <div className="bg-blue-400/30 backdrop-blur-sm border border-blue-300/20 py-5 px-8 rounded-3xl mb-10 w-full">
-        <h3 className="text-xl font-extrabold uppercase tracking-tight text-center">QUAL É O SEU ESTADO CIVIL?</h3>
+      <div className="bg-blue-400/30 backdrop-blur-sm border border-blue-300/20 py-3 px-6 rounded-2xl mb-6 w-full">
+        <h3 className="text-lg font-extrabold uppercase tracking-tight text-center italic">QUAL É O SEU ESTADO CIVIL?</h3>
       </div>
-      <div className="grid grid-cols-2 gap-4 w-full">
+      <div className="grid grid-cols-2 gap-3 w-full">
         {MARITAL_STATUSES.map(status => (
           <button
             id={`marital-${status}`}
             key={status}
             onClick={() => onSelect(status as MaritalStatus)}
-            className="flex flex-col items-center justify-center bg-blue-500/10 border border-white/5 py-10 rounded-3xl shadow-xl hover:bg-blue-500/20 hover:border-white/20 transition-all group duration-300"
+            className="flex flex-col items-center justify-center bg-blue-500/10 border border-white/5 py-6 rounded-2xl shadow-xl hover:bg-blue-500/20 hover:border-white/20 transition-all group duration-300"
           >
-            <div className="mb-4 text-4xl transform group-hover:scale-125 transition-transform duration-500">
+            <div className="mb-2 text-3xl transform group-hover:scale-110 transition-transform duration-500">
                <StatusIcon status={status as MaritalStatus} />
             </div>
-            <span className="font-extrabold text-sm tracking-wide">{status}</span>
+            <span className="font-extrabold text-[12px] uppercase tracking-tight">{status}</span>
           </button>
         ))}
       </div>
@@ -399,21 +403,21 @@ function Step5({ onSelect, onBack }: { onSelect: (status: MaritalStatus) => void
 function Step6({ onSelect, onBack }: { onSelect: (challenge: LifeChallenge) => void, onBack: () => void }) {
   return (
     <div className="flex flex-col items-center">
-      <div className="bg-blue-400/30 backdrop-blur-sm border border-blue-300/20 py-5 px-8 rounded-3xl mb-10 w-full">
-        <h3 className="text-xl font-extrabold uppercase tracking-tight text-center leading-tight">QUAL É O MAIOR DESAFIO DA SUA VIDA?</h3>
+      <div className="bg-blue-400/30 backdrop-blur-sm border border-blue-300/20 py-3 px-6 rounded-2xl mb-6 w-full">
+        <h3 className="text-lg font-extrabold uppercase tracking-tight text-center leading-tight italic">QUAL É O MAIOR DESAFIO?</h3>
       </div>
-      <div className="grid grid-cols-2 gap-4 w-full">
+      <div className="grid grid-cols-2 gap-3 w-full">
         {CHALLENGES.map(challenge => (
           <button
             id={`challenge-${challenge}`}
             key={challenge}
             onClick={() => onSelect(challenge as LifeChallenge)}
-            className="flex flex-col items-center justify-center bg-blue-500/10 border border-white/5 py-10 rounded-3xl shadow-xl hover:bg-blue-500/20 hover:border-white/20 transition-all group duration-300"
+            className="flex flex-col items-center justify-center bg-blue-500/10 border border-white/5 py-6 rounded-2xl shadow-xl hover:bg-blue-500/20 hover:border-white/20 transition-all group duration-300"
           >
-            <div className="mb-4 text-4xl transform group-hover:scale-125 transition-transform duration-500">
+            <div className="mb-2 text-3xl transform group-hover:scale-110 transition-transform duration-500">
                <ChallengeIcon challenge={challenge as LifeChallenge} />
             </div>
-            <span className="font-extrabold text-sm tracking-wide">{challenge}</span>
+            <span className="font-extrabold text-[12px] uppercase tracking-tight line-clamp-1 px-1">{challenge}</span>
           </button>
         ))}
       </div>
@@ -425,21 +429,21 @@ function Step6({ onSelect, onBack }: { onSelect: (challenge: LifeChallenge) => v
 function Step7({ onSelect, onBack }: { onSelect: (gender: Gender) => void, onBack: () => void }) {
   return (
     <div className="flex flex-col items-center">
-      <div className="bg-blue-400/30 backdrop-blur-sm border border-blue-300/20 py-5 px-8 rounded-3xl mb-10 w-full">
-        <h3 className="text-xl font-extrabold uppercase tracking-tight text-center">QUAL É O SEU SEXO?</h3>
+      <div className="bg-blue-400/30 backdrop-blur-sm border border-blue-300/20 py-3 px-6 rounded-2xl mb-6 w-full">
+        <h3 className="text-lg font-extrabold uppercase tracking-tight text-center italic">QUAL É O SEU SEXO?</h3>
       </div>
-      <div className="flex flex-col gap-5 w-full max-w-[240px]">
+      <div className="flex flex-col gap-3 w-full max-w-[220px]">
         {GENDERS.map(gender => (
           <button
             id={`gender-${gender}`}
             key={gender}
             onClick={() => onSelect(gender as Gender)}
-            className="flex flex-col items-center justify-center bg-white py-8 px-10 rounded-3xl shadow-2xl hover:scale-[1.05] transition-all group active:scale-95 duration-300"
+            className="flex flex-col items-center justify-center bg-white py-5 px-8 rounded-2xl shadow-xl hover:scale-[1.03] transition-all group active:scale-95 duration-300"
           >
-            <div className={`mb-3 text-5xl ${gender === "Masculino" ? "text-blue-500" : "text-pink-500"} transform group-hover:rotate-12 transition-transform`}>
+            <div className={`mb-2 text-4xl ${gender === "Masculino" ? "text-blue-500" : "text-pink-500"} transform group-hover:rotate-6 transition-transform`}>
                {gender === "Masculino" ? "♂" : "♀"}
             </div>
-            <span className="font-extrabold text-blue-900 text-xl tracking-tight">{gender}</span>
+            <span className="font-black text-blue-900 text-lg uppercase tracking-tighter">{gender}</span>
           </button>
         ))}
       </div>
@@ -453,17 +457,17 @@ function Step8({ onComplete, onBack }: { onComplete: (name: string) => void, onB
 
   return (
     <div className="flex flex-col items-center">
-      <div className="bg-blue-400/30 backdrop-blur-sm border border-blue-300/20 py-5 px-8 rounded-3xl mb-10 w-full">
-        <h3 className="text-xl font-extrabold uppercase tracking-tight text-center">QUAL É O SEU PRIMEIRO NOME?</h3>
+      <div className="bg-blue-400/30 backdrop-blur-sm border border-blue-300/20 py-3 px-6 rounded-2xl mb-6 w-full">
+        <h3 className="text-lg font-extrabold uppercase tracking-tight text-center italic">QUAL É O SEU NOME?</h3>
       </div>
       
-      <div className="w-full max-w-[340px] flex flex-col gap-8">
+      <div className="w-full max-w-[300px] flex flex-col gap-6">
         <input 
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Digite seu nome"
-          className="w-full bg-white text-blue-900 font-extrabold py-6 px-8 rounded-2xl shadow-inner text-center text-2xl focus:outline-none focus:ring-4 focus:ring-yellow-400/50 placeholder:text-gray-400 transition-all"
+          className="w-full bg-white text-blue-900 font-extrabold py-4 px-6 rounded-xl shadow-inner text-center text-xl focus:outline-none focus:ring-4 focus:ring-yellow-400/50 placeholder:text-gray-400 transition-all uppercase tracking-tighter"
           autoFocus
         />
 
@@ -471,14 +475,16 @@ function Step8({ onComplete, onBack }: { onComplete: (name: string) => void, onB
           id="btn-continue"
           onClick={() => name.length > 1 && onComplete(name)}
           disabled={name.length < 2}
-          className="relative bg-gradient-to-b from-blue-400 to-blue-600 text-white font-extrabold py-6 px-10 rounded-full shadow-[0_6px_0_rgba(15,23,42,0.8)] hover:brightness-110 hover:-translate-y-1 active:translate-y-1 active:shadow-none transition-all text-xl uppercase tracking-[0.1em] disabled:opacity-50 group overflow-hidden"
+          className="relative bg-gradient-to-b from-blue-400 to-blue-600 text-white font-extrabold py-5 px-8 rounded-full shadow-[0_4px_0_rgba(15,23,42,0.8)] hover:brightness-110 hover:-translate-y-1 active:translate-y-1 active:shadow-none transition-all text-lg uppercase tracking-tight disabled:opacity-50 group overflow-hidden"
         >
           <span className="absolute inset-x-0 bottom-0 h-1 bg-white/20 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />
-          Clique aqui para continuar!
+          PRÓXIMO PASSO
         </button>
       </div>
 
-      <BackButton onClick={onBack} />
+      <div className="mt-4">
+        <BackButton onClick={onBack} />
+      </div>
     </div>
   );
 }
@@ -528,14 +534,14 @@ function EmailStep({ onNext }: { onNext: (email: string) => void }) {
     <motion.div 
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
-      className="bg-[#1a2b4b]/95 backdrop-blur-xl border border-white/10 rounded-[40px] p-10 shadow-2xl text-center flex flex-col items-center justify-center py-20"
+      className="text-center flex flex-col items-center justify-center py-4 md:py-12"
     >
-      <p className="text-xl font-bold mb-10 leading-relaxed text-blue-100/90">
+      <p className="text-lg md:text-xl font-bold mb-6 md:mb-10 leading-relaxed text-blue-100/90">
         Digite o seu <span className="text-yellow-400 font-bold whitespace-nowrap">e-mail</span> para receber o restante da sua <span className="font-bold">leitura personalizada...</span>
       </p>
 
-      <form onSubmit={handleSubmit} className="w-full max-w-sm flex flex-col items-center">
-        <label className="text-2xl font-black mb-4 uppercase tracking-tighter">
+      <form onSubmit={handleSubmit} className="w-full max-w-sm flex flex-col items-center px-2">
+        <label className="text-xl md:text-2xl font-black mb-4 uppercase tracking-tighter">
           Qual é o seu Email?
         </label>
         <input 
@@ -543,12 +549,12 @@ function EmailStep({ onNext }: { onNext: (email: string) => void }) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Digite seu Email"
-          className="w-full bg-white text-blue-900 font-bold py-5 px-8 rounded-2xl mb-12 text-center text-xl focus:outline-none focus:ring-4 focus:ring-yellow-400"
+          className="w-full bg-white text-blue-900 font-bold py-4 px-6 rounded-xl mb-8 text-center text-lg md:text-xl focus:outline-none focus:ring-4 focus:ring-yellow-400 shadow-xl"
           required
         />
         <button 
           type="submit"
-          className="bg-[#2ebc15] hover:bg-green-500 text-white font-black py-6 px-12 md:px-20 rounded-full shadow-[0_0_20px_rgba(46,188,21,0.3)] border-2 border-white/20 transition-all active:scale-95 text-xl md:text-2xl uppercase tracking-widest whitespace-nowrap"
+          className="w-full bg-[#2ebc15] hover:bg-green-500 text-white font-black py-5 px-6 rounded-full shadow-[0_6px_0_rgba(20,83,45,1)] border-2 border-white/10 transition-all active:translate-y-1 active:shadow-none text-lg md:text-xl uppercase tracking-wider leading-tight"
         >
           CLIQUE PARA CONTINUAR
         </button>
@@ -598,7 +604,11 @@ function AudioStep({ state, audioUrl, captions, showEmailAt, onComplete, isSecon
   const togglePlay = () => {
     if (isPlaying) {
         audioRef.current?.pause();
-        setShowModal(true);
+        // Only show stop modal if the completion modal is not active
+        const isCompletionActive = isSecondAudio && currentTime >= 300;
+        if (!isCompletionActive) {
+            setShowModal(true);
+        }
     } else {
         audioRef.current?.play();
         setShowModal(false);
@@ -613,7 +623,7 @@ function AudioStep({ state, audioUrl, captions, showEmailAt, onComplete, isSecon
       {/* Invisible Audio Element */}
       <audio ref={audioRef} src={audioUrl} />
 
-      <div className="w-full flex-grow flex flex-col items-center text-center bg-blue-500/10 backdrop-blur-xl border border-white/5 rounded-[40px] p-8 min-h-[80vh] relative overflow-hidden">
+      <div className="w-full flex-grow flex flex-col items-center text-center relative overflow-hidden py-4">
         
         {/* Modal Overlay when paused */}
         <AnimatePresence>
@@ -645,10 +655,56 @@ function AudioStep({ state, audioUrl, captions, showEmailAt, onComplete, isSecon
         </AnimatePresence>
 
         {isSecondAudio ? (
-            <div className="flex flex-col items-center justify-center flex-grow py-20 px-4">
-                <h2 className="text-3xl md:text-5xl font-black text-blue-100/40 uppercase tracking-tighter leading-tight max-w-2xl">
-                    Obrigada por continuar comigo!
-                </h2>
+            <div className="flex flex-col items-center justify-center flex-grow py-8 md:py-12 px-4 relative w-full">
+                {!state.angelImage && (
+                  <h2 className="text-xl md:text-4xl font-black text-white uppercase tracking-tighter leading-tight max-w-2xl mb-8">
+                      Obrigada por continuar comigo!
+                  </h2>
+                )}
+                
+                {/* Image display for Audio 2 */}
+                <div className="w-full max-w-lg aspect-square bg-transparent rounded-3xl flex items-center justify-center mb-8 relative">
+                   {state.angelImage ? (
+                     <div className="relative w-full h-full flex flex-col items-center">
+                        <div className="absolute -inset-4 bg-yellow-400/20 rounded-full blur-2xl animate-pulse" />
+                        <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-2xl">
+                            <img 
+                                src={state.angelImage} 
+                                alt={state.angelName} 
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
+                        <p className="mt-4 text-2xl font-black text-yellow-400 uppercase tracking-tighter">
+                          {state.angelName}
+                        </p>
+                     </div>
+                   ) : (
+                      <div className="w-full h-full rounded-2xl border-2 border-dashed border-white/20 flex items-center justify-center italic text-xs uppercase">
+                        Espaço Reservado para Imagem
+                      </div>
+                   )}
+                </div>
+                
+                <AnimatePresence>
+                  {isSecondAudio && currentTime >= 300 && (
+                    <motion.div 
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="absolute inset-0 flex items-center justify-center bg-[#07132a]/90 backdrop-blur-md z-40 p-8"
+                    >
+                        <div className="flex flex-col items-center">
+                            <h3 className="text-xl md:text-3xl font-black mb-6 text-yellow-400 uppercase tracking-tighter text-center">SUA JANELA ESTÁ ABERTA!</h3>
+                            <button 
+                                onClick={onComplete}
+                                className="bg-[#2ebc15] hover:bg-green-500 text-white font-black py-5 px-8 md:py-6 md:px-12 rounded-full shadow-[0_0_30px_rgba(46,188,21,0.4)] border-2 border-white/20 transition-all active:scale-95 text-lg md:text-2xl uppercase tracking-tighter animate-bounce leading-tight text-center"
+                            >
+                                QUERO MEU MAPA AGORA
+                            </button>
+                            <p className="mt-6 text-[10px] opacity-70 uppercase tracking-widest font-bold">Acesso imediato e vitalício</p>
+                        </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
             </div>
         ) : (
             <>
@@ -675,22 +731,51 @@ function AudioStep({ state, audioUrl, captions, showEmailAt, onComplete, isSecon
         )}
 
         {/* Captions and Player Bar */}
-        <div className="w-full mt-auto bg-[#1a2b4b]/80 border-t border-white/10 -mx-8 -mb-8 p-6 md:p-10 flex flex-col items-center gap-6 min-h-[220px] md:min-h-[180px]">
-           <div className="w-full flex items-center justify-between gap-6">
-              <div className="flex-grow text-center text-blue-50 font-medium px-4 leading-relaxed text-lg md:text-xl min-h-[4em] flex items-center justify-center">
-                  {isPlaying ? currentCaption : "Reprodução pausada..."}
-              </div>
-
-              <div className="hidden md:block h-16 w-px bg-white/20 mx-4 shrink-0" />
-
-              <button 
-                onClick={togglePlay}
-                className="shrink-0 w-16 h-16 rounded-full bg-blue-500 hover:bg-blue-400 flex items-center justify-center transition-all shadow-lg active:scale-95"
-              >
-                {isPlaying ? <Pause fill="white" size={32} /> : <Play fill="white" size={32} className="ml-1" />}
-              </button>
+        <div className="w-full mt-auto p-4 md:p-6 flex flex-col items-center gap-8">
+           <div className="w-full text-center text-blue-50 font-bold px-2 leading-relaxed text-xl md:text-3xl min-h-[5em] flex items-center justify-center">
+               {isPlaying ? currentCaption : "Clique no play para ouvir..."}
            </div>
+
+           <button 
+             onClick={togglePlay}
+             className="w-20 h-20 rounded-full bg-blue-500 hover:bg-blue-400 flex items-center justify-center transition-all shadow-xl shadow-blue-500/30 active:scale-95"
+           >
+             {isPlaying ? <Pause fill="white" size={40} /> : <Play fill="white" size={40} className="ml-1" />}
+           </button>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function VSLStep() {
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.type = "text/javascript";
+    script.innerHTML = `
+      var s=document.createElement("script");
+      s.src="https://scripts.converteai.net/853c4f04-8442-44da-b89d-0541d78036bb/players/6a0c89d4f2566ea03b0ac950/v4/player.js",
+      s.async=!0,
+      document.head.appendChild(s);
+    `;
+    document.head.appendChild(script);
+    
+    return () => {
+    };
+  }, []);
+
+  return (
+    <div className="flex-grow flex flex-col items-center justify-center py-4 w-full">
+      <div className="w-full max-w-[400px] mx-auto overflow-hidden rounded-2xl shadow-2xl border border-white/5">
+        <div id="vid_6a0c89d4f2566ea03b0ac950" style={{ position: 'relative', width: '100%', padding: '100% 0 0' }}>
+            <img id="thumb_6a0c89d4f2566ea03b0ac950" src="https://images.converteai.net/853c4f04-8442-44da-b89d-0541d78036bb/players/6a0c89d4f2566ea03b0ac950/thumbnail.jpg" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            <div id="backdrop_6a0c89d4f2566ea03b0ac950" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backdropFilter: 'blur(5px)', WebkitBackdropFilter: 'blur(5px)' }}></div>
+        </div>
+        <div 
+          dangerouslySetInnerHTML={{ 
+            __html: `<vturb-smartplayer id="vid-6a0c89d4f2566ea03b0ac950" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"></vturb-smartplayer>` 
+          }} 
+        />
       </div>
     </div>
   );
