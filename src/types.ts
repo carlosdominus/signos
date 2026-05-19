@@ -40,4 +40,7 @@ export interface FunnelState {
   challenge?: LifeChallenge;
   gender?: Gender;
   firstName?: string;
+  email?: string;
+  angelName?: string;
+  angelImage?: string;
 }
